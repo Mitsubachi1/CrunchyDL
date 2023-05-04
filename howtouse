@@ -1,2 +1,2 @@
 To use: have a Queue.txt file in your desktop and have yt-dlp renamed to yt and have it available in the environment variables. Once that is done, just add
-  links you wish to download and once download is done, clear file and add new links
+  links you wish to download to a text file named Queue.txt and once download is done, clear file and add new links
