@@ -21,11 +21,12 @@ def downloader(browser, agent, output):
                 file.close()
                 subprocess.run("color 2", shell = True, capture_output = False)
                 print("EOF. Download list complete")
-                exit()
+                exit(0)
+                
         
             #standard stuff
             #cmd = "yt --embed-sub -f b --cookies-from-browser " + browser  + " --merge-output-format mkv "
-            cmd = "yt --embed-sub --user-agent " + agent + " --extractor-args crunchyrollbeta:multitrack_adaptive_hls_v2 --cookies-from-browser " + browser  + " --merge-output-format mkv "
+            cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:multitrack_adaptive_hls_v2 --cookies-from-browser " + browser  + " --merge-output-format mkv "
         
             #desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')    #For desktop Storing
 
