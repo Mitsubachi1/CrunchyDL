@@ -6,10 +6,11 @@ import time
 def main():
     browser = input("Enter Default Browser: ")
     agent = input("Enter User Agent of browser: ")
+    output = input("Enter path to save files: ")
     input("Crunchyroll is using 30 min cookie rule, please go to crunchyroll and run 1 vid to refresh the cookie. Once you done this you may proceed to download")
-    downloader(browser, agent) 
+    downloader(browser, agent, output) 
 
-def downloader(browser, agent):
+def downloader(browser, agent, output):
     with open(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop','Queue.txt') , 'r+') as file:
     
         while True:
@@ -27,9 +28,8 @@ def downloader(browser, agent):
             cmd = "yt --embed-sub --user-agent " + agent + " --extractor-args crunchyrollbeta:multitrack_adaptive_hls_v2 --cookies-from-browser " + browser  + " --merge-output-format mkv "
         
             #desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')    #For desktop Storing
-            destination = "M:\\Transcoder"     #Store on HDD
 
-            os.chdir(destination)
+            os.chdir(output)
             subprocess.run(cmd + link, shell=True, capture_output=False)
 
 
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     main()
 
 
-
+    
 
