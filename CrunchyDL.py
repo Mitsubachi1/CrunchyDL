@@ -1,28 +1,11 @@
 import subprocess
 import os
-import threading #implement later
+import asyncio
 import time #debug for time
 
 agent = ''
-def main():
-    browser = input("Enter Default Browser: ")
-    
-    with open('uagent.txt', 'r') as text:
-        agent = text.readline()
-        text.close()
 
-
-    output = input("Enter path to save files: ")
-    input("Crunchyroll is using 30 min cookie rule, please go to crunchyroll and run 1 vid to refresh the cookie. Once you done this you may proceed to download")
-    downloader(browser, agent, output) 
-
-
-
-
-
- 
-
-def downloader(browser, agent, output):
+async def downloader(browser, agent, output):
     with open('Queue.txt' , 'r+') as file:
         while True:
         
@@ -31,8 +14,7 @@ def downloader(browser, agent, output):
                 file.truncate(0)
                 file.close()
                 subprocess.run("color 2", shell = True, capture_output = False)
-                print("EOF. Download list complete")
-                exit(0)
+                return "EOF. Download list complete"
                 
         
             #standard stuff
@@ -44,27 +26,24 @@ def downloader(browser, agent, output):
             os.chdir(output)
             subprocess.run(cmd + link, shell=True, capture_output=False)
 
+async def main():
+    browser = input("Enter Default Browser: ")
+    
+    with open('uagent.txt', 'r') as text:
+        agent = text.readline()
+        text.close()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    output = input("Enter path to save files: ")
+    input("Crunchyroll is using 30 min cookie rule, please go to crunchyroll and run 1 vid to refresh the cookie. Once you done this you may proceed to download")
+    result = await downloader(browser, agent, output)
+    print(result) 
 
 
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
 
 
     
