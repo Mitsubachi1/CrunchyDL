@@ -1,2 +1,8 @@
-To use: have a Queue.txt file in your desktop and have yt-dlp renamed to yt and have it available in the environment variables. Once that is done, just add
-  links you wish to download to a text file named Queue.txt and once download is done, clear file and add new links
+How to use this:
+Step 1: Create "uagent.txt" and "Queue.txt" files
+Step 2: Add your useragent to uagent.txt (you can find this my looking up "what is my user agent" on your browser)
+Step 3: add whatever crunchyroll vids you wanna download to Queue.txt
+Step 4: run the exe file and follow the prompts
+
+Please note: Crunchyroll has a cookie time limit so you might have to view 1 crunchyroll vid to refresh cookies.
+Other note: After the program goes through the entire queue, the program will wipe the contents of the queue.txt file
