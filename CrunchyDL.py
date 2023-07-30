@@ -3,8 +3,6 @@ import os
 import threading #implement later
 import time #debug for time
 
-from selenium import webdriver
-
 agent = ''
 def main():
     browser = input("Enter Default Browser: ")
@@ -25,7 +23,7 @@ def main():
  
 
 def downloader(browser, agent, output):
-    with open(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop','Queue.txt') , 'r+') as file:
+    with open('Queue.txt' , 'r+') as file:
         while True:
         
             link = file.readline() #using file method
