@@ -29,8 +29,8 @@ async def downloader(browser, agent, output, queue):
     os.chdir(output)
     for link in queue:
         cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:ua_workaround --cookies-from-browser " + browser  + " --merge-output-format mkv "
-        subprocess.run(cmd + link, shell=True, capture_output=False)
-    
+        task = await asyncio.create_subprocess_shell(cmd + link, shell=True)
+        await task.communicate()
 
 async def queue(browser, agent, output):
     with open('Queue.txt' , 'r+') as file:
