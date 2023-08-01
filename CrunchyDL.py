@@ -30,7 +30,6 @@ async def downloader(browser, agent, output, queue):
     for link in queue:
         cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:ua_workaround --cookies-from-browser " + browser  + " --merge-output-format mkv "
         subprocess.run(cmd + link, shell=True, capture_output=False)
-        return "EOF. Download list complete"
     
 
 async def queue(browser, agent, output):
