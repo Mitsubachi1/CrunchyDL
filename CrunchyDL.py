@@ -5,27 +5,6 @@ import json #new import in dev
 agent = ''
 
 async def downloader(browser, agent, output, queue):
-    """                                         Deprecated Code
-    with open('Queue.txt' , 'r+') as file:
-        while True:
-        
-            link = file.readline() #using file method
-            if link == '':
-                file.truncate(0)
-                file.close()
-                subprocess.run("color 2", shell = True, capture_output = False)
-                return "EOF. Download list complete"
-                
-        
-            #standard stuff
-            #cmd = "yt --embed-sub -f b --cookies-from-browser " + browser  + " --merge-output-format mkv "
-            cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:ua_workaround --cookies-from-browser " + browser  + " --merge-output-format mkv "
-        
-            #desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')    #For desktop Storing
-
-            os.chdir(output)
-            subprocess.run(cmd + link, shell=True, capture_output=False)
-    """
     os.chdir(output)
     for link in queue:
         cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:ua_workaround --cookies-from-browser " + browser  + " --merge-output-format mkv "
