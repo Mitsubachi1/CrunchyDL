@@ -367,3 +367,5 @@ bin/uagent.txt
 bin/uagent.txt
 bin/Queue.txt
 *.txt
+Queue.txt
+uagent.txt
