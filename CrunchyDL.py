@@ -7,10 +7,11 @@ agent = ''
 async def downloader(browser, agent, output, queue):
     os.chdir(output)
     for link in queue:
-        cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:ua_workaround --cookies-from-browser " + browser  + " --merge-output-format mkv "
+        cmd = "yt --embed-sub --user-agent \"" + agent + "\" --extractor-args crunchyrollbeta:hardsub=en-US,None --cookies-from-browser " + browser  + " --merge-output-format mkv "
         task = await asyncio.create_subprocess_shell(cmd + link, shell=True)
         await task.communicate()
-
+#   workaround
+        #crunchyrollbeta:ua_workaround
 async def queue(browser, agent, output):
     with open('Queue.txt' , 'r+') as file:
         queue, second_queue = [], []
@@ -32,12 +33,34 @@ async def queue(browser, agent, output):
               
 
 async def main():
-    #Setup basic args for util
-    browser = input("Enter Default Browser: ")
-    with open('uagent.txt', 'r') as text:
-        agent = text.readline()
-        text.close()
-    output = input("Enter path to save files: ")
+    #check for existance of json file, makes one if unavailable
+    if(os.path.isfile('config.json')):
+        with open('config.json', 'r') as text:
+            configType =  text.read()
+            text.close()
+        info = json.loads(configType)
+        browser = info["browser"]
+        agent = info["agent"]
+        output = info["save_output"]
+        print(info) #!DEBUG
+        print (agent)
+
+    else:
+        #Setup basic args for util
+        print("No JSON File Found. Will create one with following info for faster experience.")
+        browser = input("Enter Default Browser: ")
+        agent = input("Enter your useragent for provided browser")
+        output = input("Enter path to save files: ")
+        data = {
+            "browser" : browser,
+            "agent" : agent,
+            "save_output" : output
+        }
+        with open('config.json' , 'w+') as config:
+            config.write(json.dumps(data, indent= 5))
+            config.close()
+
+
     #Advise User
     input("Crunchyroll is using 30 min cookie rule, please go to crunchyroll and run 1 vid to refresh the cookie. Once you done this you may proceed to download")
 
