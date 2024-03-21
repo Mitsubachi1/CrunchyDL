@@ -29,24 +29,7 @@ async def queue(browser, agent, output):
         await asyncio.gather(*task)
         print(queue)
         print(second_queue)
-"""
-        if (len(queue) % 2) == 0: #split list in half, proceed to download
-            splitIndex = len(queue) // 2
-            second_queue = queue[splitIndex:]
-            queue = queue[:splitIndex]
-            task = [downloader(browser, agent, output, queue), downloader(browser, agent, output, second_queue)]
-            await asyncio.gather(*task)
-        else:
-            task = [downloader(browser,agent,output,queue)]
-            await asyncio.gather(*task)
-"""
-        #!checking stuff
-
-
-        
-
-        
-                
+              
 
 async def main():
     #Setup basic args for util
